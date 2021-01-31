@@ -128,7 +128,7 @@ window.jQuery = function (selector) {
         elements[i].classList.add(className);
       }
 
-      return api;
+      return this;
     }
   };
   return api;
