@@ -1,5 +1,11 @@
 const log = console.log.bind(console)
 
-window.jQuery = function () {
-    log('我是 jQuery')
+window.jQuery = function (selector) {
+    const elements = document.querySelectorAll(selector)
+    const api = {
+        addClass(){
+            log(elements)
+        }
+    }
+    return api
 }

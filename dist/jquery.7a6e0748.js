@@ -120,8 +120,14 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"jquery.js":[function(require,module,exports) {
 var log = console.log.bind(console);
 
-window.jQuery = function () {
-  log('我是 jQuery');
+window.jQuery = function (selector) {
+  var elements = document.querySelectorAll(selector);
+  var api = {
+    addClass: function addClass() {
+      log(elements);
+    }
+  };
+  return api;
 };
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
