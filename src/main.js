@@ -1,2 +1,2 @@
 const api = jQuery('.test')
-api.addClass('red')
+api.addClass('red').addClass('blue')

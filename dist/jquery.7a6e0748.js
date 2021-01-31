@@ -123,8 +123,12 @@ var log = console.log.bind(console);
 window.jQuery = function (selector) {
   var elements = document.querySelectorAll(selector);
   var api = {
-    addClass: function addClass() {
-      log(elements);
+    addClass: function addClass(className) {
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].classList.add(className);
+      }
+
+      return api;
     }
   };
   return api;
