@@ -122,7 +122,7 @@ var log = console.log.bind(console);
 
 window.jQuery = function (selector) {
   var elements = document.querySelectorAll(selector);
-  var api = {
+  return {
     addClass: function addClass(className) {
       for (var i = 0; i < elements.length; i++) {
         elements[i].classList.add(className);
@@ -131,7 +131,6 @@ window.jQuery = function (selector) {
       return this;
     }
   };
-  return api;
 };
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
