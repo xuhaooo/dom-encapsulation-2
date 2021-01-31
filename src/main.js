@@ -1,2 +1,3 @@
-const api = jQuery('.test')
-api.addClass('red').addClass('blue')
+jQuery('.test')
+    .addClass('red')
+    .addClass('blue')
