@@ -118,7 +118,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-var x1 = jQuery('.test1').find('.child');
+var log = console.log.bind(console);
+var x1 = jQuery('.test').find('.child');
 log(x1);
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

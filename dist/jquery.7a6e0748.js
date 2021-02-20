@@ -130,7 +130,17 @@ window.jQuery = function (selector) {
 
       return this; // return 的对象就是调用函数里面的 this
     },
-    find: function find(selector) {}
+    find: function find(selector) {
+      var array = [];
+
+      for (var i = 0; i < elements.length; i++) {
+        var elements2 = Array.from(elements[i].querySelectorAll(selector)); // 不变下面连接结果就不是真正的数组了
+
+        array = array.concat(elements2);
+      }
+
+      return array;
+    }
   };
 };
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
