@@ -1,7 +1,12 @@
 const log = console.log.bind(console)
 
-window.jQuery = function (selector) {
-    const elements = document.querySelectorAll(selector)
+window.jQuery = function (selectorOrArray) {
+    let elements
+    if(typeof selectorOrArray === 'string'){
+        elements = document.querySelectorAll(selectorOrArray)
+    } else if(selectorOrArray instanceof Array){
+        elements = selectorOrArray
+    }
     return {
         addClass(className){
             for(let i=0;i<elements.length;i++){
@@ -17,7 +22,8 @@ window.jQuery = function (selector) {
                 // 不变下面连接结果就不是真正的数组了
                 array = array.concat(elements2)
             }
-            return array
+            const newApi = jQuery(array)
+            return newApi
         }
     }
 }

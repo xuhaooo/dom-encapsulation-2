@@ -120,8 +120,15 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"jquery.js":[function(require,module,exports) {
 var log = console.log.bind(console);
 
-window.jQuery = function (selector) {
-  var elements = document.querySelectorAll(selector);
+window.jQuery = function (selectorOrArray) {
+  var elements;
+
+  if (typeof selectorOrArray === 'string') {
+    elements = document.querySelectorAll(selectorOrArray);
+  } else if (selectorOrArray instanceof Array) {
+    elements = selectorOrArray;
+  }
+
   return {
     addClass: function addClass(className) {
       for (var i = 0; i < elements.length; i++) {
@@ -139,7 +146,8 @@ window.jQuery = function (selector) {
         array = array.concat(elements2);
       }
 
-      return array;
+      var newApi = jQuery(array);
+      return newApi;
     }
   };
 };
