@@ -125,11 +125,12 @@ window.jQuery = function (selector) {
   return {
     addClass: function addClass(className) {
       for (var i = 0; i < elements.length; i++) {
-        elements[i].classList.add(className);
+        elements[i].classList.add(className); // 用闭包来维持函数（elements - addClass）
       }
 
-      return this;
-    }
+      return this; // return 的对象就是调用函数里面的 this
+    },
+    find: function find(selector) {}
   };
 };
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -160,7 +161,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50790" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49486" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
