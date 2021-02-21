@@ -151,7 +151,7 @@ window.$ = window.jQuery = function (selectorOrArray) {
 
 jQuery.fn = jQuery.prototype = {
   jquery: true,
-  // constructor: jQuery,
+  constructor: jQuery,
   addClass: function addClass(className) {
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.add(className); // 用闭包来维持函数（elements - addClass）
@@ -200,6 +200,35 @@ jQuery.fn = jQuery.prototype = {
   },
   print: function print() {
     log(elements);
+  },
+  get: function get(index) {
+    return this.elements[index];
+  },
+  appendTo: function appendTo(node) {
+    if (node instanceof Element) {
+      this.each(function (el) {
+        return node.appendChild(el);
+      });
+    } else if (node.jquery === true) {
+      this.each(function (el) {
+        return node.get(0).appendChild(el);
+      });
+    }
+  },
+  append: function append(children) {
+    var _this = this;
+
+    if (children instanceof Element) {
+      this.get(0).appendChild(children);
+    } else if (children instanceof HTMLCollection) {
+      for (var i = 0; i < children.length; i++) {
+        this.get(0).appendChild(children[i]);
+      }
+    } else if (children.jquery === true) {
+      children.each(function (node) {
+        return _this.get(0).appendChild(node);
+      });
+    }
   }
 };
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
