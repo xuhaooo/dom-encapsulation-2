@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.js"],"names":["log","console","bind","jQuery","children","print"],"mappings":";AAAA,IAAMA,EAAMC,QAAQD,IAAIE,KAAKD,SAE7BE,OAAO,SAASC,WAAWC","file":"main.60e524bb.js","sourceRoot":"../src","sourcesContent":["const log = console.log.bind(console)\n\njQuery('.test').children().print()\n"]}
