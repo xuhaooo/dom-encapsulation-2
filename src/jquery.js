@@ -35,5 +35,17 @@ window.jQuery = function (selectorOrArray) {
             }
             return this
         },
+        parent(){
+            const array = []
+            this.each((node)=>{
+                if(array.indexOf(node.parentNode) === -1){
+                    array.push(node.parentNode)
+                }
+            })
+            return jQuery(array)
+        },
+        print(){
+            log(elements)
+        }
     }
 }

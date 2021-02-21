@@ -160,6 +160,18 @@ window.jQuery = function (selectorOrArray) {
       }
 
       return this;
+    },
+    parent: function parent() {
+      var array = [];
+      this.each(function (node) {
+        if (array.indexOf(node.parentNode) === -1) {
+          array.push(node.parentNode);
+        }
+      });
+      return jQuery(array);
+    },
+    print: function print() {
+      log(elements);
     }
   };
 };
