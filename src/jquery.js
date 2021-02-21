@@ -8,6 +8,7 @@ window.jQuery = function (selectorOrArray) {
         elements = selectorOrArray
     }
     return {
+        oldApi: selectorOrArray.oldApi,
         addClass(className){
             for(let i=0;i<elements.length;i++){
                 elements[i].classList.add(className)
@@ -22,8 +23,11 @@ window.jQuery = function (selectorOrArray) {
                 // 不变下面连接结果就不是真正的数组了
                 array = array.concat(elements2)
             }
-            const newApi = jQuery(array)
-            return newApi
+            array.oldApi = this // this 是旧的 api
+            return jQuery(array)
+        },
+        end(){
+            return this.oldApi // this 是新的 api
         }
     }
 }

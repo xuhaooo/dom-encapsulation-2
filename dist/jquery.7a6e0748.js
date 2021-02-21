@@ -130,6 +130,7 @@ window.jQuery = function (selectorOrArray) {
   }
 
   return {
+    oldApi: selectorOrArray.oldApi,
     addClass: function addClass(className) {
       for (var i = 0; i < elements.length; i++) {
         elements[i].classList.add(className); // 用闭包来维持函数（elements - addClass）
@@ -146,8 +147,12 @@ window.jQuery = function (selectorOrArray) {
         array = array.concat(elements2);
       }
 
-      var newApi = jQuery(array);
-      return newApi;
+      array.oldApi = this; // this 是旧的 api
+
+      return jQuery(array);
+    },
+    end: function end() {
+      return this.oldApi; // this 是新的 api
     }
   };
 };
