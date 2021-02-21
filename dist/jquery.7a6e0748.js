@@ -118,9 +118,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"jquery.js":[function(require,module,exports) {
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 var log = console.log.bind(console);
 
-window.jQuery = function (selectorOrArray) {
+window.$ = window.jQuery = function (selectorOrArray) {
   var elements;
 
   if (typeof selectorOrArray === 'string') {
@@ -129,51 +141,66 @@ window.jQuery = function (selectorOrArray) {
     elements = selectorOrArray;
   }
 
-  return {
-    oldApi: selectorOrArray.oldApi,
-    addClass: function addClass(className) {
-      for (var i = 0; i < elements.length; i++) {
-        elements[i].classList.add(className); // 用闭包来维持函数（elements - addClass）
-      }
+  var api = Object.create(jQuery.prototype);
+  Object.assign(api, {
+    elements: elements,
+    oldApi: selectorOrArray
+  });
+  return api;
+};
 
-      return this; // return 的对象就是调用函数里面的 this
-    },
-    find: function find(selector) {
-      var array = [];
-
-      for (var i = 0; i < elements.length; i++) {
-        var elements2 = Array.from(elements[i].querySelectorAll(selector)); // 不变下面连接结果就不是真正的数组了
-
-        array = array.concat(elements2);
-      }
-
-      array.oldApi = this; // this 是旧的 api
-
-      return jQuery(array);
-    },
-    end: function end() {
-      return this.oldApi; // this 是新的 api
-    },
-    each: function each(fn) {
-      for (var i = 0; i < elements.length; i++) {
-        fn.call(null, elements[i], i);
-      }
-
-      return this;
-    },
-    parent: function parent() {
-      var array = [];
-      this.each(function (node) {
-        if (array.indexOf(node.parentNode) === -1) {
-          array.push(node.parentNode);
-        }
-      });
-      return jQuery(array);
-    },
-    print: function print() {
-      log(elements);
+jQuery.fn = jQuery.prototype = {
+  jquery: true,
+  // constructor: jQuery,
+  addClass: function addClass(className) {
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].classList.add(className); // 用闭包来维持函数（elements - addClass）
     }
-  };
+
+    return this; // return 的对象就是调用函数里面的 this
+  },
+  find: function find(selector) {
+    var array = [];
+
+    for (var i = 0; i < elements.length; i++) {
+      var elements2 = Array.from(elements[i].querySelectorAll(selector)); // 不变下面连接结果就不是真正的数组了
+
+      array = array.concat(elements2);
+    }
+
+    array.oldApi = this; // this 是旧的 api
+
+    return jQuery(array);
+  },
+  end: function end() {
+    return this.oldApi; // this 是新的 api
+  },
+  each: function each(fn) {
+    for (var i = 0; i < elements.length; i++) {
+      fn.call(null, elements[i], i);
+    }
+
+    return this;
+  },
+  parent: function parent() {
+    var array = [];
+    this.each(function (node) {
+      if (array.indexOf(node.parentNode) === -1) {
+        array.push(node.parentNode);
+      }
+    });
+    return jQuery(array);
+  },
+  children: function children() {
+    var array = [];
+    this.each(function (node) {
+      array.push.apply(array, _toConsumableArray(node.children));
+    });
+    return jQuery(array);
+  },
+  print: function print() {
+    log(elements);
+  }
 };
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -203,7 +230,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49486" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64444" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

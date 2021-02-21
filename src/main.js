@@ -1,3 +1,3 @@
 const log = console.log.bind(console)
 
-jQuery('.test').parent().print()
+jQuery('.test').children().print()
