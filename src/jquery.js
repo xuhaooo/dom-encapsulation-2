@@ -28,6 +28,12 @@ window.jQuery = function (selectorOrArray) {
         },
         end(){
             return this.oldApi // this 是新的 api
-        }
+        },
+        each(fn){
+            for (let i = 0; i < elements.length; i++){
+                fn.call(null, elements[i], i)
+            }
+            return this
+        },
     }
 }

@@ -119,7 +119,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"main.js":[function(require,module,exports) {
 var log = console.log.bind(console);
-jQuery('.test').find('.child').addClass('red').addClass('blue').addClass('green').end().addClass('yellow');
+var x = jQuery('.test').find('.child');
+x.each(function (div) {
+  return log(div);
+});
 },{}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

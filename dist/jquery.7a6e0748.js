@@ -153,6 +153,13 @@ window.jQuery = function (selectorOrArray) {
     },
     end: function end() {
       return this.oldApi; // this 是新的 api
+    },
+    each: function each(fn) {
+      for (var i = 0; i < elements.length; i++) {
+        fn.call(null, elements[i], i);
+      }
+
+      return this;
     }
   };
 };

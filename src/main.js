@@ -1,9 +1,5 @@
 const log = console.log.bind(console)
 
-jQuery('.test')
+const x = jQuery('.test')
     .find('.child')
-    .addClass('red')
-    .addClass('blue')
-    .addClass('green')
-    .end()
-    .addClass('yellow')
+x.each((div)=>log(div))
